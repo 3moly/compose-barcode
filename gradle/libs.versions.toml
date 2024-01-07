@@ -1,0 +1,26 @@
+[plugins]
+
+androidApplication = { id = "com.android.application", version.ref = "agp" }
+androidLibrary = { id = "com.android.library", version.ref = "agp" }
+kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+compose = { id = "org.jetbrains.compose", version.ref = "plugin-compose" }
+
+[versions]
+
+agp = "8.2.1"
+kotlin = "1.9.20"
+android-compose-activity = "1.8.2"
+plugin-compose = "1.5.11"
+android-appcompat = "1.6.1"
+android-core-ktx = "1.12.0"
+zxing-core = "3.5.2"
+android-zxing-embedded = "4.1.0"
+
+[libraries]
+
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+android-core-ktx = { module = "androidx.core:core-ktx", version.ref = "android-core-ktx" }
+android-ui-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "android-appcompat" }
+android-compose-activity = { module = "androidx.activity:activity-compose", version.ref = "android-compose-activity" }
+zxing-core = { module = "com.google.zxing:core", version.ref = "zxing-core" }
+android-zxing-embedded = { module = "com.journeyapps:zxing-android-embedded", version.ref = "android-zxing-embedded" }
