@@ -28,18 +28,21 @@ import platform.AVFoundation.AVMetadataObjectTypeQRCode
 import platform.AVFoundation.AVMetadataObjectTypeUPCECode
 import platform.CoreGraphics.CGRect
 import platform.Foundation.NSCoder
+import platform.Foundation.NSKeyedArchiver
+import platform.Foundation.NSKeyedUnarchiver
+import platform.Foundation.NSMutableData
 import platform.QuartzCore.CALayer
 import platform.UIKit.UIView
 import platform.darwin.dispatch_queue_main_t
 
-class QrCodeScanner : UIView(), AVCaptureMetadataOutputObjectsDelegateProtocol {
+class QrCodeScanner(nsCoder: NSCoder) : UIView(nsCoder), AVCaptureMetadataOutputObjectsDelegateProtocol {
 
     override fun captureOutput(
         output: AVCaptureOutput,
         didOutputMetadataObjects: List<*>,
         fromConnection: AVCaptureConnection
     ) {
-        super.captureOutput(output, didOutputMetadataObjects, fromConnection)
+        //super.captureOutput(output, didOutputMetadataObjects, fromConnection)
 
         //todo stopScanning()
 
@@ -156,13 +159,23 @@ class QrCodeScanner : UIView(), AVCaptureMetadataOutputObjectsDelegateProtocol {
     }
 
     companion object {
-        fun makeView(action: (String, String) -> Unit): UIView {
-            val scanner = QrCodeScanner()
+        fun emptyView(): NSCoder {
+            val data = NSMutableData()
+            val archiver = NSKeyedArchiver(forWritingWithMutableData = data)
+            archiver.finishEncoding()
+            return NSKeyedUnarchiver(forReadingWithData = data)
+        }
 
+
+        fun makeView(scanner: QrCodeScanner, action: (String, String) -> Unit): UIView {
+
+
+            scanner.doInitialSetup()
             scanner.setQrCodeSuccess { tam, tam2 ->
                 action(tam, tam2)
             }
-            scanner.startScanning()
+            //scanner.startScanning()
+
             return scanner
         }
     }

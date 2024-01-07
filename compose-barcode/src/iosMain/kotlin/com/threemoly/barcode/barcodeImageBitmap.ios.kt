@@ -3,6 +3,7 @@ package com.threemoly.barcode
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.interop.UIKitView
 import kotlinx.cinterop.ExperimentalForeignApi
@@ -14,8 +15,12 @@ actual fun Scanner(
     modifier: Modifier,
     onCodeScanned: (result: ScannerResult) -> Unit
 ) {
+    val ioScope = rememberCoroutineScope()
+    val qrCodeScanner = remember{
+        QrCodeScanner(QrCodeScanner.emptyView())
+    }
     val scannerView = remember {
-        QrCodeScanner.makeView { code, barcodeFormat ->
+        QrCodeScanner.makeView(qrCodeScanner)  { code, barcodeFormat ->
 
             val barcodeType = when (barcodeFormat) {
                 "org.iso.Code128" -> BarcodeType.CODE_128

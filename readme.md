@@ -1,5 +1,5 @@
 [![Latest release](https://img.shields.io/github/v/release/3moly/compose-barcode?color=brightgreen&label=latest%20release)](https://github.com/3moly/compose-barcode/releases/latest)
-[![Latest build](https://img.shields.io/github/v/release/3moly/compose-input-mask?color=orange&include_prereleases&label=latest%20build)](https://github.com/3moly/compose-input-mask/releases)
+[![Latest build](https://img.shields.io/github/v/release/3moly/compose-barcode?color=orange&include_prereleases&label=latest%20build)](https://github.com/3moly/compose-barcode/releases)
 
 
 # barcode library for compose multiplatform 
